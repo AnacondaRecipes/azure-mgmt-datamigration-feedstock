@@ -1,0 +1,52 @@
+{% set name = "azure-mgmt-datamigration" %}
+{% set version = "10.1.0" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name | replace('-', '_') }}-{{ version }}.tar.gz
+  sha256: c28ef8f162b945a4cb5006404a303741c246f0331249e601d15ea1fdce95c54a
+
+build:
+  number: 0
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  skip: true  # [py<39]
+
+requirements:
+  host:
+    - setuptools
+    - wheel
+    - python
+    - pip
+  run:
+    - python
+    - isodate >=0.6.1
+    - typing_extensions >=4.6.0
+    - azure-common >=1.1
+    - azure-mgmt-core >=1.6.0
+
+tests:
+  imports:
+    - azure.mgmt.datamigration
+    - azure.mgmt.datamigration.aio
+  commands:
+    - pip check
+  requires:
+    - pip
+
+about:
+  home: https://github.com/Azure/azure-sdk-for-python
+  summary: Microsoft Azure Data Migration Client Library for Python
+  license: MIT
+  license_file: LICENSE
+  license_family: MIT
+  description: |
+    This is the Microsoft Azure Data Migration Client Library.
+  doc_url: https://github.com/Azure/azure-sdk-for-python
+  dev_url: https://github.com/Azure/azure-sdk-for-python
+
+extra:
+  recipe-maintainers:
+    - janjagusch
