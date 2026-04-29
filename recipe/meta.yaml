@@ -10,7 +10,7 @@ source:
   sha256: c28ef8f162b945a4cb5006404a303741c246f0331249e601d15ea1fdce95c54a
 
 build:
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   skip: true  # [py<39]
 
@@ -27,7 +27,7 @@ requirements:
     - azure-common >=1.1
     - azure-mgmt-core >=1.6.0
 
-tests:
+test:
   imports:
     - azure.mgmt.datamigration
     - azure.mgmt.datamigration.aio
