@@ -22,10 +22,9 @@ requirements:
     - pip
   run:
     - python
-    - isodate >=0.6.1
-    - typing_extensions >=4.6.0
-    - azure-common >=1.1
-    - azure-mgmt-core >=1.6.0
+    - msrest >=0.6.21
+    - azure-common >=1.1,<2
+    - azure-mgmt-core >=1.2.0,<2.0.0
 
 test:
   imports:
