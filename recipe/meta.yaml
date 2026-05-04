@@ -1,16 +1,16 @@
 {% set name = "azure-mgmt-datamigration" %}
-{% set version = "10.1.0" %}
+{% set version = "10.0.0" %}
 
 package:
   name: {{ name }}
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name | replace('-', '_') }}-{{ version }}.tar.gz
-  sha256: c28ef8f162b945a4cb5006404a303741c246f0331249e601d15ea1fdce95c54a
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.zip
+  sha256: 5cee70f97fe3a093c3cb70c2a190c2df936b772e94a09ef7e3deb1ed177c9f32
 
 build:
-  number: 1
+  number: 0
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   skip: true  # [py<39]
 
@@ -22,10 +22,12 @@ requirements:
     - pip
   run:
     - python
-    - isodate >=0.6.1
-    - typing_extensions >=4.6.0
-    - azure-common >=1.1
-    - azure-mgmt-core >=1.6.0
+    - msrest >=0.6.21
+    - azure-common >=1.1,<2
+    - azure-mgmt-core >=1.2.0,<2.0.0
+    # _data_migration_management_client_enums.py - line 10
+    # from six import with_metaclass
+    - six
 
 test:
   imports:
